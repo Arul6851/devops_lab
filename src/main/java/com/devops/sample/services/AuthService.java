@@ -4,26 +4,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.devops.sample.entities.AuthEntity;
+import com.devops.sample.entities.UserEntity;
 import com.devops.sample.repositories.AuthRepository;
+import com.devops.sample.repositories.UserRepository;
 
 @Service
 public class AuthService {
     
     @Autowired
     private AuthRepository auth;
+
+    @Autowired
+    private UserRepository user;
     
-    public String login (String username, String password){
-        String uname = "admin";
-        String pass = "pass";
-        if(username.equals(uname) && password.equals(pass)){
-            return "Success";
+    public String login (AuthEntity creds){
+        AuthEntity cred = auth.findByUsernameAndPassword(creds.getUsername(),creds.getPassword());
+        if(cred!=null){
+            return "Welcome, " + creds.getUsername() + "!";
         }
         else{
             return "Invalid Credentials";
         }
     }
 
-    public AuthEntity register(AuthEntity user){
-        return auth.save(user);
+    public UserEntity register(UserEntity body){
+        return user.save(body);
     }
 }

@@ -17,10 +17,11 @@ public class AuthEntity {
     private String username;
 
     @Nonnull
-    @Column(name = "username", columnDefinition = "varchar")
+    @Column(name = "password", columnDefinition = "varchar")
     private String password;
 
     AuthEntity(){
-
+        
     }
+
 }
