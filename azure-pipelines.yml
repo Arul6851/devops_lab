@@ -6,7 +6,7 @@
 trigger:
 - main
 
-pool: pipelinePool
+pool: myPoolPipeline
 
 steps:
 - task: Maven@4
